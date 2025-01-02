@@ -11,6 +11,7 @@ import JobsDashboard from './components/JobsDashboard';
 import './App.css';
 import axios from 'axios';
 import { API_BASE_URL } from './utils/config';
+import WebLLMInitializer from './components/WebLLMInitializer';
 
 const AuthenticatedNav = () => {
   const { user } = useAuth();
@@ -96,6 +97,7 @@ const App = () => {
     }
   />
 </Routes>
+          <WebLLMInitializer />
         </div>
       </AuthProvider>
     </Router>

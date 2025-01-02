@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import axios from 'axios';
 import { API_BASE_URL } from '../utils/config';
 import '../styles/HirePage.css';
+import { webLlmService } from '../services/webLlmService';
 
 const HirePage = () => {
   const [formData, setFormData] = useState({
@@ -23,6 +24,9 @@ const HirePage = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [aiProgress, setAiProgress] = useState('');
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -32,22 +36,40 @@ const HirePage = () => {
   };
 
   const handleSubmit = async () => {
-    const token = document.cookie
-      .split(';')
-      .find((cookie) => cookie.trim().startsWith('auth_token='))
-      ?.split('=')[1];
-
-    if (!token) {
-      navigate('/login-signup');
-      return;
-    }
-
     try {
+      setIsSubmitting(true);
+
+      // Get company summary if career link is provided
+      let companySummary = null;
+      if (formData.careerLink) {
+        const response = await axios.get(formData.careerLink);
+        companySummary = await webLlmService.generateCompanySummary(response.data);
+      }
+
+      // Check for spam
+      const spamCheck = await webLlmService.detectSpam(
+        formData.description,
+        formData.companyName,
+        formData.salaryRange
+      );
+
       const jobData = {
         ...formData,
         userId: user.id,
         createdBy: user.name || user.username,
+        companySummary,
+        isSpam: spamCheck.isSpam
       };
+
+      const token = document.cookie
+        .split(';')
+        .find((cookie) => cookie.trim().startsWith('auth_token='))
+        ?.split('=')[1];
+
+      if (!token) {
+        navigate('/login-signup');
+        return;
+      }
 
       await axios.post(`${API_BASE_URL}/api/jobs`, jobData, {
         headers: {
@@ -62,6 +84,35 @@ const HirePage = () => {
       if (error.response?.status === 401) {
         navigate('/login-signup');
       }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const analyzeJob = async (jobData) => {
+    try {
+      setIsAnalyzing(true);
+      
+      // Get company summary using Web LLM
+      const summary = await webLlmService.generateCompanySummary(jobData.description);
+      
+      // Check for spam using Web LLM
+      const spamCheck = await webLlmService.detectSpam(
+        jobData.description,
+        jobData.companyName,
+        jobData.salary
+      );
+      
+      return {
+        companySummary: summary,
+        isSpam: spamCheck.isSpam,
+        spamExplanation: spamCheck.explanation
+      };
+    } catch (error) {
+      console.error('Error analyzing job:', error);
+      throw error;
+    } finally {
+      setIsAnalyzing(false);
     }
   };
 
@@ -231,6 +282,12 @@ const HirePage = () => {
           </div>
         </div>
       </div>
+      {isSubmitting && (
+        <div className="loading">
+          <div className="loader"></div>
+          <p className="ai-progress">{aiProgress}</p>
+        </div>
+      )}
     </div>
   );
 };
