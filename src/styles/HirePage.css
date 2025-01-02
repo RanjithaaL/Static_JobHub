@@ -1,0 +1,195 @@
+.hire-page {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 100px;
+}
+
+.hire-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.hire-card-header {
+  padding: 2rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hire-card-header h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.close-button {
+  font-size: 2rem;
+  color: #666;
+  padding: 0.5rem 0.75rem;
+}
+
+.hire-card-content {
+  padding: 2rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-select,
+.form-input {
+  padding: 1rem 1.25rem;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  color: #333;
+  background-color: white;
+  transition: all 0.2s ease;
+  height: 3.5rem;
+}
+
+.form-select:focus,
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #2196f3;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+  outline: none;
+}
+
+.form-textarea {
+  padding: 1rem 1.25rem;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  color: #333;
+  min-height: 150px;
+  resize: vertical;
+}
+
+.helper-text {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.helper-text.right {
+  text-align: right;
+}
+
+.create-button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-end;
+  margin-top: auto;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.create-button:hover {
+  background-color: #1976d2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hire-page {
+    padding: 1.5rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .hire-card {
+    margin: 0;
+  }
+
+  .form-select,
+  .form-input,
+  .form-textarea {
+    font-size: 1rem;
+    padding: 0.875rem 1rem;
+  }
+}
+
+/* Custom Select Styling */
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.2em;
+  padding-right: 3rem;
+}
+
+/* Placeholder Styling */
+::placeholder {
+  color: #999;
+  font-size: 1.1rem;
+}
+
+/* Enhanced hover states */
+.form-select:hover,
+.form-input:hover,
+.form-textarea:hover {
+  border-color: #2196f3;
+}
+
+.form-input {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4285f4;
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.1);
+}
+
+.form-input::placeholder {
+  color: #999;
+}

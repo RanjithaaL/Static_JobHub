@@ -1,38 +1,82 @@
-.App {
-  text-align: center;
+.app-container {
+  width: 100%;
+  margin-top: 64px;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.top-navbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #001529;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 64px;
+  box-sizing: border-box;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.login-button {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Specific styles for login button */
+button.login-button {
+  background-color: #4285f4; /* Google Blue */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button.login-button:hover {
+  background-color: #357abd; /* Darker blue on hover */
+}
+
+/* Specific styles for logout button */
+a.login-button {
+  background-color: #dc3545; /* Bootstrap Red */
+}
+
+a.login-button:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+.nav-github-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.nav-logo {
+  height: 40px;
+  width: auto;
 }

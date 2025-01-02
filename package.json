@@ -3,12 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^2.2.4",
+    "@google/generative-ai": "^0.21.0",
+    "@react-oauth/google": "^0.12.1",
+    "@tailwindcss/forms": "^0.5.9",
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "@tailwindcss/typography": "^0.5.15",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0",
+    "cookies": "^0.9.1",
+    "jwt-decode": "^4.0.0",
+    "lucide-react": "^0.460.0",
+    "puppeteer": "^23.11.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
+    "shadcn-ui": "^0.9.3",
+    "universal-cookie": "^7.2.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -34,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
