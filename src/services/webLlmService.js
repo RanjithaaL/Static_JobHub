@@ -1,15 +1,14 @@
-import { ChatWorkerClient } from '@mlc-ai/web-llm';
+import { ChatModule } from '@mlc-ai/web-llm';
 
 class WebLLMService {
   constructor() {
-    this.chat = new ChatWorkerClient();
+    this.chat = new ChatModule();
     this.initialized = false;
   }
 
   async initialize() {
     if (!this.initialized) {
-      await this.chat.initChat();
-      await this.chat.loadModel('Llama-2-7b-chat-q4f32_1');
+      await this.chat.reload("Llama-2-7b-chat-q4f32_1");
       this.initialized = true;
     }
   }
@@ -26,7 +25,7 @@ class WebLLMService {
     `;
 
     const response = await this.chat.generate(prompt);
-    return response.text.trim();
+    return response.trim();
   }
 
   async detectSpam(jobDescription, companyName, salary) {
@@ -44,7 +43,7 @@ class WebLLMService {
     `;
 
     const response = await this.chat.generate(prompt);
-    const responseText = response.text.trim();
+    const responseText = response.trim();
     const isSpam = responseText.toLowerCase().includes('spam');
     const explanation = responseText.split('\n')[1] || '';
     
