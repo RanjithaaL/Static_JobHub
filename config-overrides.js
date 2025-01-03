@@ -1,26 +1,23 @@
-const path = require('path');
-
 module.exports = function override(config, env) {
-  // Add WebAssembly support
-  config.experiments = {
-    ...config.experiments,
-    asyncWebAssembly: true,
+    // Add WebAssembly support
+    config.experiments = {
+      ...config.experiments,
+      asyncWebAssembly: true,
+      layers: true,
+      topLevelAwait: true
+    };
+  
+    // Add WASM MIME type
+    config.module.rules.push({
+      test: /\.wasm$/,
+      type: 'webassembly/async',
+    });
+  
+    // Add worker-loader for web workers
+    config.module.rules.push({
+      test: /\.worker\.js$/,
+      use: { loader: 'worker-loader' }
+    });
+  
+    return config;
   };
-
-  // Add WASM MIME type
-  config.module.rules.push({
-    test: /\.wasm$/,
-    type: 'webassembly/async',
-  });
-
-  // Add resolve fallback for node modules
-  config.resolve.fallback = {
-    ...config.resolve.fallback,
-    crypto: require.resolve('crypto-browserify'),
-    stream: require.resolve('stream-browserify'),
-    fs: false,
-    path: false,
-  };
-
-  return config;
-};

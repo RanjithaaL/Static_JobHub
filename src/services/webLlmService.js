@@ -1,4 +1,4 @@
-import { Chat } from '@mlc-ai/web-llm';
+import { ChatModule } from '@mlc-ai/web-llm';
 
 class WebLLMService {
     constructor() {
@@ -9,16 +9,13 @@ class WebLLMService {
     async initialize() {
       if (!this.initialized) {
         try {
-          this.chat = new Chat({
-            model: "Llama-2-7b-chat-q4f32_1",
-            convConfig: {
-              repetition_penalty: 1.0,
-              temperature: 0.7,
-              max_gen_len: 1024,
-            }
+          this.chat = new ChatModule();
+          await this.chat.reload("Llama-2-7b-chat-q4f32_1", {
+            repetition_penalty: 1.0,
+            temperature: 0.7,
+            max_gen_len: 1024
           });
           
-          await this.chat.loadModel();
           this.initialized = true;
           console.log("Chat initialized successfully");
         } catch (error) {
