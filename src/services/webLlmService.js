@@ -1,13 +1,14 @@
-import { ChatModule } from '@mlc-ai/web-llm';
+import { createChatModule } from '@mlc-ai/web-llm';
 
 class WebLLMService {
   constructor() {
-    this.chat = new ChatModule();
+    this.chat = null;
     this.initialized = false;
   }
 
   async initialize() {
     if (!this.initialized) {
+      this.chat = await createChatModule();
       await this.chat.reload("Llama-2-7b-chat-q4f32_1");
       this.initialized = true;
     }
