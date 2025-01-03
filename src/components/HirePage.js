@@ -25,6 +25,7 @@ const HirePage = () => {
   const navigate = useNavigate();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [aiProgress, setAiProgress] = useState('');
 
   const handleChange = (e) => {
@@ -92,9 +93,11 @@ const HirePage = () => {
   const analyzeJob = async (jobData) => {
     try {
       setIsAnalyzing(true);
+      setAiProgress('Analyzing job posting...'); // Optional: Add progress indicator
       
       // Get company summary using Web LLM
       const summary = await webLlmService.generateCompanySummary(jobData.description);
+      setAiProgress('Checking for spam...'); // Optional: Update progress
       
       // Check for spam using Web LLM
       const spamCheck = await webLlmService.detectSpam(
@@ -113,6 +116,7 @@ const HirePage = () => {
       throw error;
     } finally {
       setIsAnalyzing(false);
+      setAiProgress(''); // Optional: Clear progress indicator
     }
   };
 
@@ -282,7 +286,7 @@ const HirePage = () => {
           </div>
         </div>
       </div>
-      {isSubmitting && (
+      {(isSubmitting || isAnalyzing) && ( 
         <div className="loading">
           <div className="loader"></div>
           <p className="ai-progress">{aiProgress}</p>
