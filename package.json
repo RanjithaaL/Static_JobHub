@@ -53,6 +53,8 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "react-app-rewired": "^2.2.1"
+    "crypto-browserify": "^3.12.1",
+    "react-app-rewired": "^2.2.1",
+    "stream-browserify": "^3.0.0"
   }
 }
