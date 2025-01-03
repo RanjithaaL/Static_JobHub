@@ -1,4 +1,4 @@
-import { ChatModule } from '@mlc-ai/web-llm';
+import { WebLLMChat } from '@mlc-ai/web-llm';
 
 class WebLLMService {
     constructor() {
@@ -9,7 +9,7 @@ class WebLLMService {
     async initialize() {
       if (!this.initialized) {
         try {
-          this.chat = new ChatModule();
+          this.chat = new WebLLMChat();
           await this.chat.reload("Llama-2-7b-chat-q4f32_1", {
             repetition_penalty: 1.0,
             temperature: 0.7,
