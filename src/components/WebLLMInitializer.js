@@ -4,6 +4,7 @@ import { webLlmService } from '../services/webLlmService';
 const WebLLMInitializer = () => {
   const [status, setStatus] = useState('');
   const [error, setError] = useState(null);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     const initializeLLM = async () => {
@@ -11,6 +12,8 @@ const WebLLMInitializer = () => {
         await webLlmService.initialize((progress) => {
           setStatus(`Loading model: ${progress.text} (${Math.round(progress.progress * 100)}%)`);
         });
+        setIsInitialized(true);
+        setStatus(''); // Clear the status once initialized
       } catch (error) {
         console.error('Failed to initialize Web LLM:', error);
         setError(`Failed to initialize AI model: ${error.message}`);
@@ -28,7 +31,7 @@ const WebLLMInitializer = () => {
     );
   }
 
-  if (status) {
+  if (status && !isInitialized) {
     return (
       <div className="llm-loading">
         <div className="loader"></div>
