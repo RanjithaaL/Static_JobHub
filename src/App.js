@@ -11,7 +11,6 @@ import JobsDashboard from './components/JobsDashboard';
 import './App.css';
 import axios from 'axios';
 import { API_BASE_URL } from './utils/config';
-import WebLLMInitializer from './components/WebLLMInitializer';
 
 const AuthenticatedNav = () => {
   const { user } = useAuth();
@@ -74,30 +73,29 @@ const App = () => {
               path="/dashboard"
               element={
                 <PrivateRoute>
-        <JobsDashboard />
-      </PrivateRoute>
-    }
-  />
-  <Route
-    path="/jobs"
-    element={
-      <PrivateRoute>
-        <JobsPage />
-      </PrivateRoute>
-    }
-  />
-  <Route path="/logout" element={<Logout />} />
-  <Route path="/auth/github/callback" element={<GitHubCallback />} />
-  <Route
-    path="/hire"
-    element={
-      <PrivateRoute>
-        <HirePage />
-      </PrivateRoute>
-    }
-  />
-</Routes>
-          <WebLLMInitializer />
+                  <JobsDashboard />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/jobs"
+              element={
+                <PrivateRoute>
+                  <JobsPage />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/auth/github/callback" element={<GitHubCallback />} />
+            <Route
+              path="/hire"
+              element={
+                <PrivateRoute>
+                  <HirePage />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
         </div>
       </AuthProvider>
     </Router>

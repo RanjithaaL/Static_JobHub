@@ -5,6 +5,7 @@ import axios from 'axios';
 import { API_BASE_URL } from '../utils/config';
 import '../styles/HirePage.css';
 import { webLlmService } from '../services/webLlmService';
+import { WebLLMInitializer } from '../components/WebLLMInitializer';
 
 const HirePage = () => {
   const [formData, setFormData] = useState({
@@ -122,6 +123,7 @@ const HirePage = () => {
 
   return (
     <div className="hire-page">
+      <WebLLMInitializer />
       <div className="hire-card">
         <div className="hire-card-header">
           <h2>Creating New Job</h2>
