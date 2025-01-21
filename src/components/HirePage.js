@@ -5,7 +5,7 @@ import axios from 'axios';
 import { API_BASE_URL } from '../utils/config';
 import '../styles/HirePage.css';
 import { webLlmService } from '../services/webLlmService';
-import { WebLLMInitializer } from '../components/WebLLMInitializer';
+import WebLLMInitializer from '../components/WebLLMInitializer';
 
 const HirePage = () => {
   const [formData, setFormData] = useState({
