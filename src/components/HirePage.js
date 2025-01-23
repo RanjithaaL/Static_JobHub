@@ -40,39 +40,41 @@ const HirePage = () => {
   const handleSubmit = async () => {
     try {
       setIsSubmitting(true);
+      setAiProgress('Analyzing job details...');
 
-      // Get company summary if career link is provided
-      let companySummary = null;
+      // Get career page content through proxy if URL is provided
+      let careerPageContent = '';
       if (formData.careerLink) {
-        const response = await axios.get(formData.careerLink);
-        companySummary = await webLlmService.generateCompanySummary(response.data);
+        try {
+          const token = getToken();
+          const response = await axios.get(
+            `${API_BASE_URL}/api/proxy-career-page?url=${encodeURIComponent(formData.careerLink)}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            }
+          );
+          careerPageContent = response.data.content;
+        } catch (error) {
+          console.error('Error fetching career page:', error);
+          // Continue with job creation even if career page fetch fails
+        }
       }
 
-      // Check for spam
-      const spamCheck = await webLlmService.detectSpam(
-        formData.description,
-        formData.companyName,
-        formData.salaryRange
-      );
+      // Analyze job with combined description and career page content
+      const analysisResult = await analyzeJob({
+        ...formData,
+        description: `${formData.description}\n\n${careerPageContent}`.trim()
+      });
 
       const jobData = {
         ...formData,
-        userId: user.id,
-        createdBy: user.name || user.username,
-        companySummary,
-        isSpam: spamCheck.isSpam
+        companySummary: analysisResult.companySummary,
+        isSpam: analysisResult.isSpam
       };
 
-      const token = document.cookie
-        .split(';')
-        .find((cookie) => cookie.trim().startsWith('auth_token='))
-        ?.split('=')[1];
-
-      if (!token) {
-        navigate('/login-signup');
-        return;
-      }
-
+      const token = getToken();
       await axios.post(`${API_BASE_URL}/api/jobs`, jobData, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -83,11 +85,10 @@ const HirePage = () => {
       navigate('/jobs');
     } catch (error) {
       console.error('Error creating job:', error);
-      if (error.response?.status === 401) {
-        navigate('/login-signup');
-      }
+      // Handle error appropriately
     } finally {
       setIsSubmitting(false);
+      setAiProgress('');
     }
   };
 
