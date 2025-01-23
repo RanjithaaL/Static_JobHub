@@ -8,6 +8,7 @@ import { webLlmService } from '../services/webLlmService';
 import WebLLMInitializer from '../components/WebLLMInitializer';
 
 const HirePage = () => {
+  const { getToken } = useAuth();
   const [formData, setFormData] = useState({
     companyName: '',
     location: '',
@@ -22,7 +23,6 @@ const HirePage = () => {
     careerLink: '',
   });
 
-  const { user } = useAuth();
   const navigate = useNavigate();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
