@@ -51,21 +51,23 @@ const HirePage = () => {
             `${API_BASE_URL}/api/proxy-career-page?url=${encodeURIComponent(formData.careerLink)}`,
             {
               headers: {
-                Authorization: `Bearer ${token}`
-              }
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              },
+              timeout: 30000 // 30 second timeout
             }
           );
-          careerPageContent = response.data.content;
+          careerPageContent = response.data.content || '';
         } catch (error) {
           console.error('Error fetching career page:', error);
-          // Continue with job creation even if career page fetch fails
+          // Continue with job creation without career page content
         }
       }
 
-      // Analyze job with combined description and career page content
+      // Proceed with job analysis even if career page fetch fails
       const analysisResult = await analyzeJob({
         ...formData,
-        description: `${formData.description}\n\n${careerPageContent}`.trim()
+        description: formData.description // Use only the description if career page fetch failed
       });
 
       const jobData = {
@@ -85,7 +87,8 @@ const HirePage = () => {
       navigate('/jobs');
     } catch (error) {
       console.error('Error creating job:', error);
-      // Handle error appropriately
+      // Show error to user
+      alert('Failed to create job. Please try again.');
     } finally {
       setIsSubmitting(false);
       setAiProgress('');

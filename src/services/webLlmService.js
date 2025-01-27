@@ -27,7 +27,6 @@ class WebLLMService {
 
         this.engine = await CreateMLCEngine(this.modelId, {
           initProgressCallback: (progress) => {
-            console.log("Progress:", progress);
             if (progressCallback) progressCallback(progress);
           }
         });
