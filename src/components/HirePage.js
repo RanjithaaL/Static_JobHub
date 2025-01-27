@@ -54,20 +54,28 @@ const HirePage = () => {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json'
               },
-              timeout: 30000 // 30 second timeout
+              timeout: 30000
             }
           );
           careerPageContent = response.data.content || '';
         } catch (error) {
           console.error('Error fetching career page:', error);
-          // Continue with job creation without career page content
         }
       }
 
-      // Proceed with job analysis even if career page fetch fails
+      // Combine job description with career page content
+      const combinedDescription = `
+        Job Description:
+        ${formData.description}
+        
+        Career Page Information:
+        ${careerPageContent}
+      `.trim();
+
+      // Proceed with job analysis with combined content
       const analysisResult = await analyzeJob({
         ...formData,
-        description: formData.description // Use only the description if career page fetch failed
+        description: combinedDescription
       });
 
       const jobData = {
@@ -87,7 +95,6 @@ const HirePage = () => {
       navigate('/jobs');
     } catch (error) {
       console.error('Error creating job:', error);
-      // Show error to user
       alert('Failed to create job. Please try again.');
     } finally {
       setIsSubmitting(false);
