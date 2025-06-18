@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# Job Hub – Job Listing Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern job listing application built with React (frontend) and Node.js/Express (backend), using Firebase for authentication and GitHub OAuth. The frontend is deployed on Vercel, and the backend is deployed on Render.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installing Dependencies](#installing-dependencies)
+- [Setting Up GitHub OAuth](#setting-up-github-oauth)
+- [Environment Variables](#environment-variables)
+- [Running Locally](#running-locally)
+- [Deploying to Vercel (Frontend)](#deploying-to-vercel-frontend)
+- [Deploying to Render (Backend)](#deploying-to-render-backend)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Prerequisites
 
-### `npm test`
+- Node.js (v14 or later)
+- npm (comes with Node.js)
+- A GitHub account
+- Gemini account
+- Vercel account (for frontend deployment)
+- Render account (for backend deployment)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Installing Dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clone the repository and install dependencies for both frontend and backend:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+Open a terminal and move to the main folder and run the following command:
+npm install           
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Setting Up GitHub OAuth
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Go to [GitHub Developer Settings](https://github.com/settings/developers).
+2. Click on "OAuth Apps" > "New OAuth App".
+3. Fill in:
+   - **Application name:** Your app's name
+   - **Homepage URL:** `your_vercel_url`
+   - **Authorization callback URL:** `your_vercel_url/auth/github/callback`
+4. After creating, note the **Client ID** and **Client Secret**.
+5. In the Firebase Console:
+   - Go to "Authentication" > "Sign-in method".
+   - Enable "GitHub" and enter the Client ID and Secret.
+   - Copy the callback URL from Firebase and update it in your GitHub OAuth app if needed.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Environment Variables
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Create a `.env` file in both the frontend and backend root directories.
 
-## Learn More
+### Frontend (`.env`)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## Running Locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Frontend
 
-### Analyzing the Bundle Size
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Backend
 
-### Making a Progressive Web App
+```bash
+cd server
+node server.js
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Deploying to Vercel (Frontend)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. Push your code to GitHub.
+2. Go to [Vercel](https://vercel.com/) and import your repository.
+3. Set the environment variables in the Vercel dashboard (Settings > Environment Variables).
+4. Deploy the project.
+5. Your app will be live at `https://project_name.vercel.app` (or your Vercel-assigned domain).
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Deploying to Render (Backend)
 
-### `npm run build` fails to minify
+1. Push your backend code to GitHub (if in a separate repo/folder).
+2. Go to [Render](https://render.com/) and create a new Web Service.
+3. Connect your GitHub repository.
+4. Set the environment variables in the Render dashboard.
+5. Set the build and start commands (e.g., `npm install` and `npm start`).
+6. Deploy the service.
+7. Your backend will be live at `https://project_name.onrender.com`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
