@@ -125,6 +125,10 @@ node server.js
 
 ![Job Description](screenshots/job_description.png)
 
+### Spam Job Posting
+
+![Spam Job Posting](screenshots/spam_job_posting.png)
+
 ### AI Generated Content
 
 ![AI Generated Content](screenshots/AI_generated_content.png)
@@ -137,6 +141,3 @@ node server.js
 
 ![Generated Resume](screenshots/generated_resume.png)
 
-### Spam Job Posting
-
-![Spam Job Posting](screenshots/spam_job_posting.png)
