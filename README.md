@@ -102,3 +102,41 @@ node server.js
 7. Your backend will be live at `https://project_name.onrender.com`.
 
 ---
+
+---
+
+## 🌐 Live Demo
+
+[Click here to view JobHub live](https://job-ui-six.vercel.app/display-jobs)
+
+---
+
+## 📸 Screenshots
+
+### Homepage
+
+![Homepage](screenshots/homepage.png)
+
+### Job Posting Page
+
+![Job Posting](screenshots/job_posting.png)
+
+### Job Description
+
+![Job Description](screenshots/job_description.png)
+
+### Spam Job Posting
+
+![Spam Job Posting](screenshots/spam_job_posting.png)
+
+### AI Generated Content
+
+![AI Generated Content](screenshots/AI_generated_content.png)
+
+### Resume Builder
+
+![Resume Builder](screenshots/resume_builder.png)
+
+### Generated Resume
+
+![Generated Resume](screenshots/generated_resume.png)
