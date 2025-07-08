@@ -127,7 +127,7 @@ node server.js
 
 ### Spam Job Posting
 
-![Spam Job Posting](screenshots/spam_job.png)
+![Spam Job Posting](screenshots/spam.png)
 
 ### AI Generated Content
 
