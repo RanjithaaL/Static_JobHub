@@ -43,6 +43,8 @@ This project is an MVP (Minimum Viable Product) of a static job portal. The goal
 
 > **MVP Note:** This platform is an MVP to validate building a lightweight, static job portal integrated with AI and GitHub-driven workflows.
 
+---
+
 
 ## Prerequisites
 
