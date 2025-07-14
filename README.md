@@ -11,7 +11,6 @@ This project is an MVP (Minimum Viable Product) of a static job portal. The goal
 - User-friendly UI
 - Rapid development with minimal costs
 
-This MVP was developed to test user engagement and gather feedback for potential future enhancements.
 
 ---
 
