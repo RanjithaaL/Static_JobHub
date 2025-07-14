@@ -3,6 +3,17 @@
 A modern job listing application built with React (frontend) and Node.js/Express (backend), using Firebase for authentication and GitHub OAuth. The frontend is deployed on Vercel, and the backend is deployed on Render.
 
 ---
+## About This Project
+
+This project is an MVP (Minimum Viable Product) of a static job portal. The goal was to validate the concept of a simple, lightweight platform for job listings, before investing in a dynamic or database-driven solution. It demonstrates:
+
+- Basic job listing and filtering functionality
+- User-friendly UI
+- Rapid development with minimal costs
+
+This MVP was developed to test user engagement and gather feedback for potential future enhancements.
+
+---
 
 ## Table of Contents
 
