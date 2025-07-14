@@ -28,6 +28,23 @@ This MVP was developed to test user engagement and gather feedback for potential
 
 ---
 
+## Features
+
+## 🚀 Features
+
+- **Static Site Architecture:** High performance and low server costs using GitHub Pages or Vercel.
+- **GitHub Integration for Job Management:** Employers can manage job postings via GitHub Issues and Pull Requests.
+- **Secure GitHub OAuth Authentication:** Easy and secure login for users.
+- **Real-Time Job Search and Filtering:** Search jobs by title, location, domain, work type, and more, all without page reloads.
+- **AI-Powered Job Analysis:** Local spam detection and company sentiment analysis using Transformer.js.
+- **Resume Builder with GenAI:** Generates professional resumes with customizable templates and language.
+- **Automated Social Media Content Creation:** Helps employers promote jobs on social media.
+- **Responsive and Accessible UI:** Works seamlessly across devices with accessible design principles.
+- **Future-Ready Architecture:** Designed for future features like ATS, dashboards, and multilingual support.
+
+> **MVP Note:** This platform is an MVP to validate building a lightweight, static job portal integrated with AI and GitHub-driven workflows.
+
+
 ## Prerequisites
 
 - Node.js (v14 or later)
